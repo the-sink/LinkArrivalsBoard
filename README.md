@@ -1,6 +1,7 @@
 # LinkArrivalsBoard
 A Sound Transit Link light rail station arrivals board mock-up made in Godot
 
+![Raspberry Pi with display running arrivals board app](https://i.imgur.com/FoXd88i.jpeg)
 ![Sample screenshot](https://i.imgur.com/kGuq9Xm.png)
 
 > warning: potential spaghetti code inside
@@ -13,5 +14,7 @@ A Sound Transit Link light rail station arrivals board mock-up made in Godot
 * The app enters its "running" loop, where all relevant stop IDs for the currently selected station name are queried against the OneBusAway *arrivals-and-departures-for-stop* endpoint every 30 seconds. Every 5 seconds, the displayed arrival time label (i.e. "5 min") is updated using the last available arrival timestamp and current system timestamp.
 
 ## Setup
+
+This is a [Godot](https://godotengine.org/) 4.3 project (developed on 4.3.beta3 for now).
 
 Create an `oba_api_key` environment variable containing your OneBusAway API key. Info on requesting an API key is available on [Sound Transit's website](https://www.soundtransit.org/help-contacts/business-information/open-transit-data-otd#:~:text=OneBusAway%20API%20Library-,Request%20an%20API%20key,-To%20request%20an). Once you have the key set, run the app (in editor is fine; if exported and run on a standalone executable it will launch in exclusive fullscreen unless otherwise configured).
