@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func clear_removed_trips():
 	for tripId in GlobalState.current_arrivals:
-		var arrival = GlobalState.current_arrivals[tripId]
+		var arrival: Arrival = GlobalState.current_arrivals[tripId]
 		if arrival.update_cycle_flag == false:
 			get_node(arrival.ui_item).queue_free()
 			GlobalState.current_arrivals.erase(tripId)

@@ -9,9 +9,9 @@ enum DisplayState {
 	RUNNING
 }
 
-var api_key := OS.get_environment("oba-api-key")
+var api_key := OS.get_environment("oba_api_key")
 
-var selected_station_name: String = "Westlake":
+var selected_station_name := "Westlake":
 	set(val):
 		selected_station_name = val
 		station_name_changed.emit(val)
@@ -34,7 +34,7 @@ var display_state: DisplayState = DisplayState.WAITING_FOR_STATION_LIST:
 # Cached locally for n days (refresh_gtfs_interval_days above)
 
 func _ready() -> void:
-	if api_key.length() < 1:
+	if api_key.is_empty():
 		display_state = DisplayState.ENV_VAR_ERROR
 		return
 
