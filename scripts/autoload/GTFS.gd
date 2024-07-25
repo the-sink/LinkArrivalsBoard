@@ -7,6 +7,7 @@ var cached_gtfs_zip_reader: ZIPReader
 
 #TODO: Re-check (and re-download if needed) while app is running, if running for prolonged periods
 # (currently it will only check and re-download GTFS data on startup)
+#TODO: Download & file read error handling
 
 func _download_gtfs_zip(http: HTTPRequest) -> void:
 	http.download_file = "user://40_gtfs.zip"

@@ -9,6 +9,8 @@ enum DisplayState {
 	RUNNING
 }
 
+#TODO: Request error handling
+
 var api_key := OS.get_environment("oba_api_key")
 
 var selected_station_name := "Westlake":

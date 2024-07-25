@@ -8,6 +8,9 @@ extends ScrollContainer
 
 @onready var arrival_template := preload("res://arrival_template.tscn")
 
+#TODO: Make arrivals list scrollable on touch displays
+#TODO: Data refresh error handling`
+
 var request_queue_length: int = 0:
 	set(val):
 		request_queue_length = val
