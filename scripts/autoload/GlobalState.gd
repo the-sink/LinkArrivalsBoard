@@ -41,7 +41,7 @@ func _ready() -> void:
 	var http := HTTPRequest.new()
 	add_child(http)
 	
-	var stops_file_contents: String = GTFS.get_gtfs_file("stops")
+	var stops_file_contents: String = await GTFS.get_gtfs_file("stops")
 	
 	http.request("https://api.pugetsound.onebusaway.org/api/where/stops-for-route/40_100479.json?key=" + api_key)
 	var stops_body = (await http.request_completed)

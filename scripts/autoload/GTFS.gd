@@ -26,7 +26,7 @@ func _ensure_gtfs_available() -> void:
 	var http := HTTPRequest.new()
 	add_child(http)
 	if do_gtfs_refresh:
-		_download_gtfs_zip(http)
+		await _download_gtfs_zip(http)
 		gtfs_config.set_value("last", "gtfs_update", Time.get_unix_time_from_system())
 		gtfs_config.save("user://gtfs.cfg")
 	
@@ -35,7 +35,7 @@ func _ensure_gtfs_available() -> void:
 	cached_gtfs_zip_reader = zip_reader
 
 func get_gtfs_file(name: String) -> String:
-	_ensure_gtfs_available()
+	await _ensure_gtfs_available()
 	if not name.ends_with(".txt"): name += ".txt"
 	if not cached_gtfs_zip_reader.file_exists(name): return ""
 	
