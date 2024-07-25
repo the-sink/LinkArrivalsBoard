@@ -38,8 +38,8 @@ script/source = "extends ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalState.display_state_changed.connect(func(new, old):
-		visible = new == GlobalState.DisplayState.ENV_VAR_ERROR
+	GlobalState.display_state_changed.connect(func():
+		visible = GlobalState.display_state == GlobalState.DisplayState.ENV_VAR_ERROR
 	)
 	visible = GlobalState.display_state == GlobalState.DisplayState.ENV_VAR_ERROR
 "
