@@ -24,7 +24,7 @@ func start_if_ready():
 func _ready() -> void:
 	GlobalState.current_arrivals = {}
 	start_if_ready()
-	GlobalState.display_state_changed.connect(func(new, old): start_if_ready())
+	GlobalState.display_state_changed.connect(start_if_ready)
 
 func clear_removed_trips():
 	for tripId in GlobalState.current_arrivals:

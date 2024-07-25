@@ -15,4 +15,4 @@ func populate():
 
 func _ready() -> void:
 	populate()
-	GlobalState.display_state_changed.connect(func(new, old): populate())
+	GlobalState.display_state_changed.connect(populate)
