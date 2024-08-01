@@ -11,52 +11,36 @@ enum DisplayState {
 
 #TODO: Request error handling
 
-var api_key := OS.get_environment("oba_api_key")
-
+var proxy_server_base_url := "http://127.0.0.1:5000"
+var selected_route_id := "40_100479"
 var selected_station_name := "":
 	set(val):
 		selected_station_name = val
 		station_name_changed.emit(val)
 
 var current_arrivals := {}
-var line_color_cache := {}
 
-var station_list := {}:
-	set(val):
-		if val != null:
-			station_list = val
-			selected_station_name = station_list.keys()[0]
-			display_state = DisplayState.RUNNING
+var station_list := []
+var route_metadata := {}
 var display_state: DisplayState = DisplayState.WAITING_FOR_STATION_LIST:
 	set(val):
 		var old_state := display_state
 		display_state = val
 		display_state_changed.emit()
 
-# Use static GTFS data for staton name -> stop ID translation dict
-# Cached locally for n days (refresh_gtfs_interval_days above)
-
 func _ready() -> void:
-	if api_key.is_empty():
-		display_state = DisplayState.ENV_VAR_ERROR
-		return
-
 	var http := HTTPRequest.new()
 	add_child(http)
 	
-	var stops_file_contents: String = await GTFS.get_gtfs_file("stops")
+	# get stops list
+	http.request(proxy_server_base_url + "/stops/" + selected_route_id)
+	var stops_list_response = await http.request_completed
+	station_list = JSON.parse_string(stops_list_response[3].get_string_from_utf8())
+	if station_list and len(station_list) > 0:
+		selected_station_name = station_list[0]
+		display_state = DisplayState.RUNNING
 	
-	http.request("https://api.pugetsound.onebusaway.org/api/where/stops-for-route/40_100479.json?key=" + api_key)
-	var stops_body = (await http.request_completed)
-	stops_body = stops_body[3]
-	var stops_data = JSON.parse_string(stops_body.get_string_from_utf8())['data']
-	var stop_list: Array = stops_data['entry']['stopIds']
-	
-	var new_station_list := {}
-	for line in stops_file_contents.split("\n"):
-		var items = line.split(",")
-		if items.size() <= 1: break
-		if not "40_" + items[0] in stop_list: continue
-		var name_list = new_station_list.get_or_add(items[1], [])
-		name_list.append(items[0])
-	station_list = new_station_list
+	# get route metadata
+	http.request(proxy_server_base_url + "/routes")
+	var metadata_response = await http.request_completed
+	route_metadata = JSON.parse_string(metadata_response[3].get_string_from_utf8())

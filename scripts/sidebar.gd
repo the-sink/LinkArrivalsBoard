@@ -2,7 +2,6 @@ extends ColorRect
 
 @export var open: bool = false:
 	set(val):
-		if GlobalState.display_state != GlobalState.DisplayState.RUNNING: return
 		if val == open: return
 		open = val
 		

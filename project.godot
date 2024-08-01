@@ -21,7 +21,6 @@ config/icon="res://icons/train-variant-custom.png"
 [autoload]
 
 GlobalState="*res://scripts/autoload/GlobalState.gd"
-GTFS="*res://scripts/autoload/GTFS.gd"
 
 [display]
 

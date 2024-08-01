@@ -9,7 +9,7 @@ func populate():
 	if already_run: return
 	already_run = true
 	
-	for station_name in GlobalState.station_list.keys():
+	for station_name in GlobalState.station_list:
 		var button: Button = preload("res://station_button.tscn").instantiate()
 		button.station_name = station_name
 		container.add_child(button)

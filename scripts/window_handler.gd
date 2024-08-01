@@ -15,6 +15,8 @@ func _process(delta: float) -> void:
 		arrivals_scroll_container.scroll_vertical += Input.get_axis("scroll_up", "scroll_down") * scroll_speed * delta
 
 func _on_gui_input(event: InputEvent) -> void:
+	if GlobalState.display_state != GlobalState.DisplayState.RUNNING: return
+	
 	var swipe_open: bool = false
 	var swipe_close: bool = false
 	if event is InputEventScreenDrag:
@@ -28,5 +30,6 @@ func _on_gui_input(event: InputEvent) -> void:
 	sidebar.open = swipe_open
 
 func _input(event: InputEvent) -> void:
+	if GlobalState.display_state != GlobalState.DisplayState.RUNNING: return
 	if event.is_action_pressed("open_menu"):
 		sidebar.open = !sidebar.open

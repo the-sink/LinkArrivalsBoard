@@ -14,6 +14,10 @@ extends HBoxContainer
 	set(val):
 		line_color = val
 		line_number_panel.self_modulate = line_color
+@export var text_color: Color = Color.WHITE:
+	set(val):
+		text_color = val
+		line_number_label.self_modulate = text_color
 @export var headsign_text: String = "Unknown":
 	set(val):
 		headsign_text = val
