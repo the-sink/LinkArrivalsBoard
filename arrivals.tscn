@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bthpipfaf55qo"]
+[gd_scene load_steps=23 format=3 uid="uid://bthpipfaf55qo"]
 
 [ext_resource type="Script" path="res://scripts/window_handler.gd" id="1_smm0t"]
 [ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hp1oq"]
@@ -12,6 +12,11 @@
 [ext_resource type="FontFile" uid="uid://dl8287jdfc6qh" path="res://fonts/Roboto/Roboto-Italic.ttf" id="9_0wna1"]
 [ext_resource type="Texture2D" uid="uid://5chn0pg1uu6c" path="res://icons/alert-circle.png" id="10_exswk"]
 [ext_resource type="FontFile" uid="uid://3xukjm7epjdx" path="res://fonts/Roboto/Roboto-BoldItalic.ttf" id="12_08mcj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ouqqy"]
+font = ExtResource("12_08mcj")
+font_size = 40
+font_color = Color(1, 1, 1, 0.333333)
 
 [sub_resource type="LabelSettings" id="LabelSettings_73avc"]
 font = ExtResource("2_hp1oq")
@@ -73,7 +78,7 @@ func _on_pressed() -> void:
 	OS.execute(\"reboot\", [])
 "
 
-[node name="StationView" type="Control" node_paths=PackedStringArray("sidebar")]
+[node name="StationView" type="Control" node_paths=PackedStringArray("sidebar", "arrivals_scroll_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,8 +87,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_smm0t")
 sidebar = NodePath("Sidebar")
+arrivals_scroll_container = NodePath("ArrivalsList")
 
-[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("oba_request", "container", "time_delta_timer", "data_timer")]
+[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("oba_request", "container", "time_delta_timer", "data_timer", "no_arrivals_text")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -101,6 +107,7 @@ oba_request = NodePath("OBARequest")
 container = NodePath("Container")
 time_delta_timer = NodePath("TimeDeltaRefresh")
 data_timer = NodePath("DataRefresh")
+no_arrivals_text = NodePath("../NoArrivalsText")
 
 [node name="Container" type="VBoxContainer" parent="ArrivalsList"]
 layout_mode = 2
@@ -114,6 +121,18 @@ wait_time = 5.0
 wait_time = 30.0
 
 [node name="OBARequest" type="HTTPRequest" parent="ArrivalsList"]
+
+[node name="NoArrivalsText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No arrivals in the next 90 minutes"
+label_settings = SubResource("LabelSettings_ouqqy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Header" type="ColorRect" parent="."]
 layout_mode = 1
@@ -267,6 +286,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 offset_right = 125.0
 offset_bottom = 50.0
+focus_neighbor_right = NodePath("../RestartButton")
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("8_vqphk")
 theme_override_font_sizes/font_size = 20
@@ -279,6 +299,7 @@ layout_mode = 2
 offset_left = 125.0
 offset_right = 250.0
 offset_bottom = 50.0
+focus_neighbor_left = NodePath("../ShutdownButton")
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("8_vqphk")
 theme_override_font_sizes/font_size = 20
@@ -293,6 +314,7 @@ anchor_bottom = 1.0
 offset_top = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
 script = ExtResource("8_7chtn")
 container = NodePath("VBoxContainer")
 

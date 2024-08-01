@@ -13,7 +13,7 @@ enum DisplayState {
 
 var api_key := OS.get_environment("oba_api_key")
 
-var selected_station_name := "Westlake":
+var selected_station_name := "":
 	set(val):
 		selected_station_name = val
 		station_name_changed.emit(val)
@@ -25,6 +25,7 @@ var station_list := {}:
 	set(val):
 		if val != null:
 			station_list = val
+			selected_station_name = station_list.keys()[0]
 			display_state = DisplayState.RUNNING
 var display_state: DisplayState = DisplayState.WAITING_FOR_STATION_LIST:
 	set(val):

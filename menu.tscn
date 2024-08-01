@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://cca5x6vrrwfgr"]
+
+[ext_resource type="Texture2D" uid="uid://b75nwjlmiile" path="res://icons/arrow-left-custom.png" id="1_tg6dr"]
+[ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_kvnta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6txr5"]
+bg_color = Color(0.0588235, 0.0705882, 0.0745098, 1)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6hcq"]
+font = ExtResource("2_kvnta")
+font_size = 28
+font_color = Color(1, 1, 1, 0.835294)
+
+[node name="Menu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.760784)
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6txr5")
+
+[node name="ColorRect" type="ColorRect" parent="MainPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.517647)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MainPanel/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+icon = ExtResource("1_tg6dr")
+icon_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainPanel/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"
+label_settings = SubResource("LabelSettings_q6hcq")

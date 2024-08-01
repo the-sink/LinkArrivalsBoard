@@ -6,10 +6,12 @@ extends ScrollContainer
 @export var time_delta_timer: Timer
 @export var data_timer: Timer
 
+@export var no_arrivals_text: Label
+
 @onready var arrival_template := preload("res://arrival_template.tscn")
 
 #TODO: Make arrivals list scrollable on touch displays
-#TODO: Data refresh error handling`
+#TODO: Data refresh error handling
 
 var request_queue_length: int = 0:
 	set(val):
@@ -35,6 +37,8 @@ func clear_removed_trips():
 		if arrival.update_cycle_flag == false:
 			get_node(arrival.ui_item).queue_free()
 			GlobalState.current_arrivals.erase(tripId)
+	
+	no_arrivals_text.visible = GlobalState.current_arrivals.size() < 1
 
 func do_data_refresh() -> void:
 	var selected_station_list: Array = GlobalState.station_list[GlobalState.selected_station_name]

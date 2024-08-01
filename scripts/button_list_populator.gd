@@ -1,6 +1,7 @@
 extends ScrollContainer
 
 @export var container: VBoxContainer
+
 var already_run := false
 
 func populate():
@@ -9,7 +10,7 @@ func populate():
 	already_run = true
 	
 	for station_name in GlobalState.station_list.keys():
-		var button = preload("res://station_button.tscn").instantiate()
+		var button: Button = preload("res://station_button.tscn").instantiate()
 		button.station_name = station_name
 		container.add_child(button)
 

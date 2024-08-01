@@ -1,11 +1,18 @@
 extends Control
 
 @export var sidebar: ColorRect
+@export var arrivals_scroll_container: ScrollContainer
+
+var scroll_speed := 500.0
 
 func _ready() -> void:
-	if not OS.has_feature("editor"):
+	if not OS.has_feature("editor") and not OS.has_feature("wasm"):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+func _process(delta: float) -> void:
+	if not sidebar.open:
+		arrivals_scroll_container.scroll_vertical += Input.get_axis("scroll_up", "scroll_down") * scroll_speed * delta
 
 func _on_gui_input(event: InputEvent) -> void:
 	var swipe_open: bool = false
