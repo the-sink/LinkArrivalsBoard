@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://cca5x6vrrwfgr"]
+
+[ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_dgqhd"]
+[ext_resource type="Script" path="res://scripts/setup_window.gd" id="1_lsguj"]
+[ext_resource type="FontFile" uid="uid://dd5ihffwns22g" path="res://fonts/Roboto/Roboto-MediumItalic.ttf" id="2_fi6ne"]
+[ext_resource type="FontFile" uid="uid://ct356plalw8v3" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_s75tk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6txr5"]
+bg_color = Color(0.0357121, 0.0450063, 0.0481344, 1)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6hcq"]
+font = ExtResource("1_dgqhd")
+font_size = 28
+font_color = Color(1, 1, 1, 0.835294)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lldsr"]
+content_margin_top = 9.0
+content_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_p2mg3"]
+font = ExtResource("2_fi6ne")
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61dl2"]
+content_margin_top = 9.0
+content_margin_bottom = 8.0
+
+[node name="Setup" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.721569)
+script = ExtResource("1_lsguj")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 35.0
+offset_right = -50.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6txr5")
+
+[node name="ColorRect" type="ColorRect" parent="MainPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.517647)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer" type="Control" parent="MainPanel/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Setup"
+label_settings = SubResource("LabelSettings_q6hcq")
+
+[node name="Steps" type="VBoxContainer" parent="MainPanel"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainPanel/Steps"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lldsr")
+text = "Select a line/route below..."
+label_settings = SubResource("LabelSettings_p2mg3")
+
+[node name="RouteList" type="ScrollContainer" parent="MainPanel/Steps"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/Steps/RouteList"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainPanel/Steps"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_61dl2")
+text = "...then select a station:"
+label_settings = SubResource("LabelSettings_p2mg3")
+
+[node name="StationList" type="ScrollContainer" parent="MainPanel/Steps"]
+layout_mode = 2
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/Steps/StationList"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MainPanel/Steps"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="MainPanel/Steps"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_s75tk")
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+
+[connection signal="pressed" from="MainPanel/Steps/Continue" to="." method="_on_continue_pressed"]

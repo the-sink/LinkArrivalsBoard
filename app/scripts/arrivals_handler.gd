@@ -10,11 +10,10 @@ extends ScrollContainer
 
 @onready var arrival_template := preload("res://arrival_template.tscn")
 
-#TODO: Make arrivals list scrollable on touch displays
 #TODO: Data refresh error handling
 
 func start_if_ready():
-	if GlobalState.display_state == GlobalState.DisplayState.RUNNING:
+	if GlobalState.display_state == GlobalState.DisplayState.READY:
 		time_delta_timer.start()
 		data_timer.start()
 		do_data_refresh()
