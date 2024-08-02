@@ -26,10 +26,10 @@ scheduler = BackgroundScheduler()
 gtfs_url = "https://www.soundtransit.org/GTFS-rail/40_gtfs.zip"
 routes = {
     "40_100479": {}, # 1 line
-    # "40_2LINE": {},
-    # "40_TLINE": {},
-    # "40_SNDR_TL": {}, # Sounder S line (seattle - tacoma dome/lakewood)
-    # "40_SNDR_EV": {} # Sounder N line (seattle - everett)
+    "40_2LINE": {},
+    "40_TLINE": {},
+    "40_SNDR_TL": {}, # Sounder S line (seattle - tacoma dome/lakewood)
+    "40_SNDR_EV": {} # Sounder N line (seattle - everett)
 }
 route_metadata = {}
 cache = {}
