@@ -37,7 +37,7 @@ func update_station_list():
 	#TODO: not correct, station_list should change depending on the selected route
 	for item in station_list_container.get_children():
 		item.queue_free()
-	for station_name in GlobalState.station_list:
+	for station_name in GlobalState.station_list.keys():
 		var button = preload("res://station_button.tscn").instantiate()
 		button.text = "  " + station_name + "  "
 		button.button_pressed = GlobalState.selected_station_name == station_name

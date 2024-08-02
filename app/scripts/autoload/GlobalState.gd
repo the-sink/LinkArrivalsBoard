@@ -32,7 +32,7 @@ var selected_station_name := "":
 
 var current_arrivals := {}
 
-var station_list := []:
+var station_list := {}:
 	set(val):
 		station_list = val
 		station_list_changed.emit()
@@ -60,12 +60,11 @@ func _ready() -> void:
 		
 		# get stops list
 		var stops_list_response = await Util.make_request(http, proxy_server_base_url + "/stops/" + selected_route_id)
-		if not stops_list_response: return
+		if not stops_list_response or stops_list_response['response_code'] != 200: return
 		station_list = JSON.parse_string(stops_list_response['body'].get_string_from_utf8())
 		
 		# if there is data, set the display to the ready state
-		if station_list and len(station_list) > 0:
-			selected_station_name = station_list[0]
+		if station_list and len(station_list.keys()) > 0:
 			display_state = DisplayState.READY
 	)
 	

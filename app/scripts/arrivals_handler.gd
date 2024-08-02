@@ -6,6 +6,9 @@ extends ScrollContainer
 @export var time_delta_timer: Timer
 @export var data_timer: Timer
 
+@export var service_alert_container: ColorRect
+@export var service_alert_text: Label
+
 @export var no_arrivals_text: Label
 
 @onready var arrival_template := preload("res://arrival_template.tscn")
@@ -39,7 +42,14 @@ func do_data_refresh() -> void:
 	oba_request.request(GlobalState.proxy_server_base_url + "/arrivals/" + GlobalState.selected_route_id,
 	["Content-Type: application/json"], HTTPClient.METHOD_GET, GlobalState.selected_station_name
 	)
-	await oba_request.request_completed
+	
+	var service_alerts = await ServiceAlerts.get_relevant_alerts()
+	var relevant_alerts = service_alerts['relevant_alerts']
+	visible = not service_alerts['no_service']
+	
+	service_alert_container.visible = len(relevant_alerts) > 0
+	if service_alert_container.visible:
+		service_alert_text.text = relevant_alerts[0]['text']
 
 func do_time_delta_refresh() -> void:
 	var current_time: int = Time.get_unix_time_from_system()

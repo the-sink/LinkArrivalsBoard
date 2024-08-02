@@ -20,6 +20,7 @@ config/icon="res://icons/train-variant-custom.png"
 
 [autoload]
 
+ServiceAlerts="*res://scripts/autoload/ServiceAlerts.gd"
 GlobalState="*res://scripts/autoload/GlobalState.gd"
 Util="*res://scripts/autoload/Util.gd"
 

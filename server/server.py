@@ -109,7 +109,7 @@ def get_routes():
 def get_stops(route):
     if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
     if not route in routes: return Response("The specified route is not tracked on the server", status=400)
-    return list(routes[route])
+    return routes[route]
 
 @server.route('/arrivals/<route>')
 def get_arrivals(route):

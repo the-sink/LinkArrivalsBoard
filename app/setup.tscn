@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cca5x6vrrwfgr"]
+[gd_scene load_steps=11 format=3 uid="uid://cca5x6vrrwfgr"]
 
 [ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_dgqhd"]
 [ext_resource type="Script" path="res://scripts/setup_window.gd" id="1_lsguj"]
 [ext_resource type="FontFile" uid="uid://dd5ihffwns22g" path="res://fonts/Roboto/Roboto-MediumItalic.ttf" id="2_fi6ne"]
+[ext_resource type="Texture2D" uid="uid://cit23uues803t" path="res://icons/cog-custom.png" id="2_i1it7"]
 [ext_resource type="FontFile" uid="uid://ct356plalw8v3" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_s75tk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6txr5"]
@@ -13,7 +14,6 @@ shadow_offset = Vector2(1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_q6hcq"]
 font = ExtResource("1_dgqhd")
 font_size = 28
-font_color = Color(1, 1, 1, 0.835294)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lldsr"]
 content_margin_top = 9.0
@@ -69,7 +69,20 @@ grow_vertical = 2
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="MainPanel/ColorRect/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.835294)
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("2_i1it7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="MainPanel/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
 [node name="Label" type="Label" parent="MainPanel/ColorRect/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.835294)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Setup"
@@ -92,7 +105,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/normal = SubResource("StyleBoxEmpty_lldsr")
-text = "Select a line/route below..."
+text = "Select a line/route below:"
 label_settings = SubResource("LabelSettings_p2mg3")
 
 [node name="RouteList" type="ScrollContainer" parent="MainPanel/Steps"]
