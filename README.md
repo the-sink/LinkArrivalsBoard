@@ -2,19 +2,15 @@
 A Sound Transit Link light rail station arrivals board mock-up made in Godot
 
 ![Raspberry Pi with display running arrivals board app](https://i.imgur.com/FoXd88i.jpeg)
-![Sample screenshot](https://i.imgur.com/kGuq9Xm.png)
+![Arrivals screen at Westlake](https://i.imgur.com/kGuq9Xm.png)
+![Arrivals screen at Columbia City with service disruption](https://i.imgur.com/VXxdz8n.png)
+![Setup screen](https://i.imgur.com/juxzPWL.png)
 
 > warning: potential spaghetti code inside
 
-## Process
 
-* The app downloads a Sound Transit *GTFS Schedule Files* zip file (https://www.soundtransit.org/GTFS-rail/40_gtfs.zip); this stays on the device as a cached copy for 3 days before a re-download.
-* The *stops-for-route* [OneBusAway API](https://developer.onebusaway.org/api/where/methods) endpoint is used to get a list of stop IDs associated with the relevant route (in this case, the 1 Line).
-* A collection of stop IDs associated with station names is built from the GTFS data and *stops-for-route* list obtained above, so that station names (i.e. "Westlake") can be translated to a list of stop IDs to check arrivals for.
-* The app enters its "running" loop, where all relevant stop IDs for the currently selected station name are queried against the OneBusAway *arrivals-and-departures-for-stop* endpoint every 30 seconds. Every 5 seconds, the displayed arrival time label (i.e. "5 min") is updated using the last available arrival timestamp and current system timestamp.
+This is a [Godot](https://godotengine.org/) 4.3 project (developed on 4.3.rc1 for now). Binaries may or may not exist yet in the releases section of this repo. If not, you will need to launch the Godot project yourself and export to your desired platform. On an older version, a OneBusAway API key was required; however this is no longer required as the app uses a proxy server instead. This proxy server caches requests made to the OneBusAway API for 30 seconds and, as of right now, has a (fairly) strict rate limit. If you would like to use this for your own projects besides simply running an arrivals board, _*please run your own proxy server*!
 
-## Setup
+As of v2, it supports more than just the 1 Line: it (should) support all three active Sound Transit light rail lines (1 Line, 2 Line, T Line) as well as the Sounder N and S lines.
 
-This is a [Godot](https://godotengine.org/) 4.3 project (developed on 4.3.beta3 for now).
-
-Create an `oba_api_key` environment variable containing your OneBusAway API key. Info on requesting an API key is available on [Sound Transit's website](https://www.soundtransit.org/help-contacts/business-information/open-transit-data-otd#:~:text=OneBusAway%20API%20Library-,Request%20an%20API%20key,-To%20request%20an). Once you have the key set, run the app (in editor is fine; if exported and run on a standalone executable it will launch in exclusive fullscreen unless otherwise configured).
+> Reliability is **not** guaranteed; the proxy server could go down at any moment, the app could experience errors and/or crashes, etc. This is an experiment more than anything!
