@@ -129,4 +129,4 @@ def get_arrivals(route):
 
 scheduler.add_job(update_gtfs, trigger='interval', days=1, id='update_gtfs', next_run_time=datetime.now())
 scheduler.start()
-serve(server, host='0.0.0.0', port=8001)
+serve(server, host='0.0.0.0', port=2052)
