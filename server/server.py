@@ -1,6 +1,7 @@
 # Link arrivals board OneBusAway API proxy server
 # Responses from the OBA API are cached for 30 seconds
 
+import os
 import secret
 import requests
 import time
@@ -11,6 +12,7 @@ from flask import Flask, Response, request, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from apscheduler.schedulers.background import BackgroundScheduler
+from waitress import serve
 
 server = Flask(__name__)
 limiter = Limiter(
@@ -127,4 +129,4 @@ def get_arrivals(route):
 
 scheduler.add_job(update_gtfs, trigger='interval', days=1, id='update_gtfs', next_run_time=datetime.now())
 scheduler.start()
-server.run()
+serve(server, host='0.0.0.0', port=8001)
