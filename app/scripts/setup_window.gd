@@ -59,3 +59,7 @@ func _on_continue_pressed() -> void:
 	if GlobalState.selected_route_id.is_empty() or GlobalState.selected_station_name.is_empty(): return
 	
 	get_tree().change_scene_to_file("res://arrivals.tscn")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("open_setup"):
+		continue_button.grab_focus()

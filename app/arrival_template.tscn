@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpsfhs5ps115f"]
+[gd_scene load_steps=14 format=3 uid="uid://cpsfhs5ps115f"]
 
 [ext_resource type="Script" path="res://scripts/arrival_ui_item.gd" id="1_1hu8g"]
 [ext_resource type="FontFile" uid="uid://ct356plalw8v3" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1_s03e5"]
 [ext_resource type="FontFile" uid="uid://dff177hdblssn" path="res://fonts/RobotoCondensed/RobotoCondensed-Bold.ttf" id="2_3gn2b"]
-[ext_resource type="Texture2D" uid="uid://b6jh8l80pnnr2" path="res://icons/broadcast.png" id="3_kt7vw"]
+[ext_resource type="Texture2D" uid="uid://b4u8mb8s3jlb5" path="res://icons/realtime-a.png" id="4_30tvd"]
 [ext_resource type="FontFile" uid="uid://d1my2mcq31arm" path="res://fonts/RobotoCondensed/RobotoCondensed-Black.ttf" id="4_rig73"]
+[ext_resource type="Texture2D" uid="uid://cjd7oebfx4eyf" path="res://icons/realtime-b.png" id="5_21ydd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eh0d8"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,6 +23,68 @@ font_size = 60
 [sub_resource type="LabelSettings" id="LabelSettings_g6khp"]
 font = ExtResource("2_3gn2b")
 font_size = 68
+
+[sub_resource type="Animation" id="Animation_dm8t4"]
+resource_name = "SignalEffect"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("A:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("B:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ltdce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("A:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("B:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5qg3"]
+_data = {
+"RESET": SubResource("Animation_ltdce"),
+"SignalEffect": SubResource("Animation_dm8t4")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_kqpws"]
 font = ExtResource("4_rig73")
@@ -70,13 +133,36 @@ custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Realtime" type="TextureRect" parent="."]
+[node name="Realtime" type="Control" parent="."]
 self_modulate = Color(0.0588235, 0.623529, 0.243137, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_kt7vw")
+
+[node name="A" type="TextureRect" parent="Realtime"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_30tvd")
 expand_mode = 1
+
+[node name="B" type="TextureRect" parent="Realtime"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_21ydd")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Realtime"]
+libraries = {
+"": SubResource("AnimationLibrary_v5qg3")
+}
 
 [node name="ArrivalTime" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.913725)

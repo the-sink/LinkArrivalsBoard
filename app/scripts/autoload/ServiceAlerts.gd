@@ -14,6 +14,8 @@ func _update_alerts():
 	if current_time - last_request < 30: return
 	last_request = current_time
 	
+	#var file = FileAccess.open("res://test_alerts_scenario.json", FileAccess.READ)
+	#cached_alerts = JSON.parse_string(file.get_as_text())['entity']
 	var err = _http.request("https://s3.amazonaws.com/st-service-alerts-prod/alerts_pb.json")
 	if err == OK: cached_alerts = JSON.parse_string((await _http.request_completed)[3].get_string_from_utf8())['entity']
 

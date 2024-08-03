@@ -3,7 +3,8 @@ extends HBoxContainer
 @onready var line_number_panel: Panel = $LineNumber
 @onready var line_number_label: Label = $LineNumber/Label
 @onready var headsign_label: Label = $Headsign
-@onready var realtime_icon: TextureRect = $Realtime
+@onready var realtime_icon: Control = $Realtime
+@onready var realtime_anim: AnimationPlayer = $Realtime/AnimationPlayer
 @onready var arrival_time_label: Label = $ArrivalTime
 
 @export var line_number: String = "0":
@@ -26,6 +27,8 @@ extends HBoxContainer
 	set(val):
 		is_realtime = val
 		realtime_icon.visible = is_realtime
+		if realtime_icon.visible: realtime_anim.play("SignalEffect")
+		else: realtime_anim.stop()
 @export var arrival_time_minutes: int = 0:
 	set(val):
 		arrival_time_minutes = val

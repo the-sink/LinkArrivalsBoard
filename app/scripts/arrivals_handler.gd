@@ -2,14 +2,17 @@ extends ScrollContainer
 
 @export var oba_request: HTTPRequest
 @export var container: VBoxContainer
+@export var no_arrivals_text: Label
 
+@export_category("Timers")
 @export var time_delta_timer: Timer
 @export var data_timer: Timer
 
+@export_category("Service Alerts Content")
 @export var service_alert_container: ColorRect
 @export var service_alert_text: Label
-
-@export var no_arrivals_text: Label
+@export var no_service_warning: ColorRect
+@export var no_service_anim: AnimationPlayer
 
 @onready var arrival_template := preload("res://arrival_template.tscn")
 
@@ -46,6 +49,9 @@ func do_data_refresh() -> void:
 	var service_alerts = await ServiceAlerts.get_relevant_alerts()
 	var relevant_alerts = service_alerts['relevant_alerts']
 	visible = not service_alerts['no_service']
+	no_service_warning.visible = not visible
+	if no_service_warning.visible: no_service_anim.play("WarningIconFade")
+	else: no_service_anim.stop()
 	
 	service_alert_container.visible = len(relevant_alerts) > 0
 	if service_alert_container.visible:
