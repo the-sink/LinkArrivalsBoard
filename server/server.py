@@ -72,6 +72,7 @@ def update_gtfs():
             id_list = route_dict.get(stop_name, [])
             id_list.append(stop_id)
             route_dict[stop_name] = id_list
+        time.sleep(0.1)
     
     # get routes metadata
     routes_file = archive.open("routes.txt")
@@ -123,7 +124,7 @@ def get_arrivals(route):
         response = make_request(f"https://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/{stop_id}.json?key={secret.api_key}&minutesAfter=90")
         if response and response['code'] and response['code'] == 200:
             arrivals += response['data']['entry']['arrivalsAndDepartures']
-
+        time.sleep(0.1)
     return arrivals
 
 
