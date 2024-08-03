@@ -1,0 +1,1160 @@
+{
+  "note": "The following file is a snapshot of the service alerts data reported on August 1 2024 during a service disruption caused by a power outage, used for testing purposes.",
+  "header": {
+	"gtfs_realtime_version": "2.0",
+	"incrementality": "FULL_DATASET",
+	"timestamp": 1722562933
+  },
+  "entity": [
+	{
+	  "id": "2013",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Sounder Bike Restriction",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Due to safety concerns, bicycles and scooters are restricted on Sounder cars until further notice. \r\n\nOnly four bicycles and/or scooters are allowed per train car. Riders may only enter Sounder trains through doors with a bicycle symbol. Always follow any directions from the conductor.\r\n\nEach Sounder train car has two tie-down spaces for riders to secure their bicycles or scooters. If the tie-down spaces are occupied, two additional riders may stand with their bikes or scooters. When standing, please stand by the doors near the tie-down area. Restrain your bike or scooter with one hand and hold on to a secure pole with the other. Do not lean, or secure, your bicycle or scooter to other secured bicycles or scooters. Remember, you may need to move your bicycle or scooter, so other riders can move about the train. \r\n",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://SoundTransit.org/alert/st/2013",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1694578380
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_EV"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "2041",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Northgate Station Garage  Partial Parking Closure ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Several parking stalls at Northgate Station Garage are closed off until further notice due to water intrusion issues. These stalls will be closed off until water intrusion issues are resolved to minimize vehicle damage. \r\n",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://SoundTransit.org/alert/st/2041",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1694760120
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990005"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990006"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "2909",
+	  "alert": {
+		"effect": "ACCESSIBILITY_ISSUE",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ELEVATOR_CLOSURE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "University Street North Mezzanine elevators to Benaroya Hall lobby reduced service hours in 2024",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "The University Street elevators serving the north mezzanine to the Benaroya Hall lobby, near Exit A2, will have reduced hours for public use beginning Tuesday, January 2, 2024. The elevators will be available from 11 a.m. to 2 p.m. Tuesday through Friday, except holidays.\r\n\nOn certain weekends and evenings, the Benaroya Hall Boeing Gallery will offer access to University Street Station from 2.5 hours prior to any public event through its conclusion. See the Seattle Symphony’s calendar of Benaroya Hall events for dates and times of public events.\r\n\nThe elevators will be in service at the specified times. Please use alternate elevators when these elevators are not in service.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://SoundTransit.org/alert/st/2909",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1703901600
+		  }
+		],
+		"informed_entity": [
+		  {
+			"route_id": "100479",
+			"stop_id": "455"
+		  },
+		  {
+			"route_id": "100479",
+			"stop_id": "565"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "3000",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Sound Transit has reopened the sixth floor of the Auburn Station garage, which has added additional parking for passengers. The fifth floor remains closed until further notice for use by the city of Auburn\n\n\n\n\n",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Affected lines:\r\nS Line",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://SoundTransit.org/alert/st/3000",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1704916800
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL",
+			"stop_id": "S_AU_NB"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL",
+			"stop_id": "S_AU_SB"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "3240",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "MAINTENANCE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "MAINTENANCE_ACTIVITY",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Sumner parking closure starts Feb. 19 to make room for garage construction. 190 stalls to be closed.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "On Monday, Feb. 19, Sound Transit's contractor will close approximately 190 parking stalls at Sumner Station, to make room for garage construction. We expect the closure to last about two years. At least 110 stalls will always be available, including the 68 stalls in the lot north of Maple Street. \r\n\nThe work will be done in phases. During Phase 1, which may last several months, approximately 40 stalls will remain open in the station’s southwest triangle lot. This includes ADA stalls, motorcycle stalls and pick-up and drop-off stalls will be in this area. (There are also pick-up and drop-off spaces on Traffic Avenue.) During Phase 1, Narrow Street will be closed to through traffic at Maple Ave, and Academy Street will be closed to through traffic at Cherry Street.    \r\n\nWe recommend passengers make alternate plans for getting to a Sounder station as detailed in earlier alerts, including driving to  Puyallup Station, Bonney Lake Park-and-Ride Lot, walking or bicycling, or applying for a",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/ride-with-us/stops-stations/sumner-station",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1708340400
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL",
+			"stop_id": "S_SU_NB"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL",
+			"stop_id": "S_SU_SB"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "3622",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Late night rider information from Seattle-Tacoma International Airport to Northgate Station.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "For service to Northgate via downtown Seattle, from Seattle -Tacoma International Airport: \r\n\nOn weekdays and Saturday, the last train to Northgate Station with service through downtown Seattle departs SeaTac/Airport Station at about 11:58 p.m. All remaining trains will terminate at Beacon Hill Station. \r\n\nOn Sunday’s, the last train to Northgate Station with service through downtown Seattle departs SeaTac/Airport Station at about 11:13 p.m. All remaining trains will terminate at Beacon Hill Station.\r\n\nPassengers are recommended to exit at Mount Baker Station and use the following King County Metro Routes to travel towards Northgate Station:\r\n\n•\tPassengers requiring service to downtown Seattle, please take King County Metro Route 7.\r\n\n•\tPassengers requiring service to Capitol Hill Station, please take King County Metro Route 7 to 3rd Avenue and Pike Street, then transfer to King County Metro Route 49 at Pike Street and 4th Avenue.\r\n\n•\tPassengers requiring service to University of",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/tripplanner",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1711782000,
+			"end": 1725173940
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "4147",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Sound Transit has started checking fares on the downtown Seattle platforms. ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Beginning June 3rd, Sound Transit Fare Ambassadors have started checking fares within the FARE PAID ZONES, in certain Seattle stations.  \r\n\nAffected stops:\r\nBeacon Hill\r\nInternational District\r\nPioneer Square\r\nUniversity Street\r\nWestlake\r\nUniversity District",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/blog/platform/get-ready-fare-checks-link-platforms-summer",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1717408800
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "1108"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "1121"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "455"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "501"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "532"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "565"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "621"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "623"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990001"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990002"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99121"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99240"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "4901",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "MAINTENANCE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "MAINTENANCE_ACTIVITY",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Sound Transit is replacing platform edge tiles at SeaTac Airport Station from July 15 to Sept 6. The maintenance work will occur from 10 p.m. to 6 a.m. Monday through Friday.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "During this time, trains will share one track, requiring passengers to board all trains on the platform to Northgate. Passengers should pay attention to platform closure signs, the train’s head sign, and listen for announcements before boarding.\r\n\nAdditional travel time may be experienced during this project. Check the ST Trip planner for transit updates.\r\n\n\r\n",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/ride-with-us/changes-affect-my-ride/planned-service-disruptions",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1720724400,
+			"end": 1725701400
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99903"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99904"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "4996",
+	  "alert": {
+		"effect": "ADDITIONAL_SERVICE",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "EXTRA_SERVICE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "OTHER_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "SPECIAL_EVENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Extra service on N Line and S Line from 10:00 AM through 6:00 PM on Sun Aug 4 due to special event",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Mariners vs. Philadelphia Phillies",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/get-to-know-us/news-events/calendar/mariners-vs-philadelphia-phillies-2024-08-04",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722790800,
+			"end": 1722819600
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_EV"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 2,
+			"route_id": "SNDR_TL"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5041",
+	  "alert": {
+		"effect": "ACCESSIBILITY_ISSUE",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ELEVATOR_CLOSURE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "MAINTENANCE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "MAINTENANCE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Elevator outage at International District/Chinatown Station. The elevator at Exit A serving the street (5th Ave S & S Jackson St) and Angle Lake platform is out of service.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "To ride the 1 Line to Angle Lake:\r\n\n1. Continue on 5th Ave S toward S King St.\r\n2. Take the elevator down to the Angle Lake platform.\r\n\nTo exit the station:\r\n\n1. Go to the opposite end of the platform toward Exit B.\r\n2. Take the elevator up to the street.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://SoundTransit.org/alert/st/5041",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1721243100
+		  }
+		],
+		"informed_entity": [
+		  {
+			"route_id": "100479",
+			"stop_id": "623"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5248",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "MAINTENANCE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "MAINTENANCE_ACTIVITY",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "New Variable Messaging Signs will be installed at Capitol Hill Station beginning on Sunday, July 28.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "New signs will help better communicate service information to passengers. Information displayed on signs at the stations may not be viewable during installation and testing.\r\n\nCapitol Hill Station scheduled installation: 8 a.m. - 4 p.m., 7/28 until 8/30.\r\n\nThere should be minimal impact on how a passenger navigates through the station platform and entry to the station.  \r\n\nThis schedule may be subject to change and updates will be provided when available.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/ride-with-us/changes-affect-my-ride/navigating-service-disruptions#1line ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722178800,
+			"end": 1725058800
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99610"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5249",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "MAINTENANCE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "MAINTENANCE_ACTIVITY",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "New Variable Messaging Signs will be installed at University of Washington Station beginning on Sunday, July 28.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "New signs will help better communicate service information to passengers. Information displayed on signs at the stations may not be viewable during installation and testing. \r\n\nThere should be minimal impact on how a passenger navigates through the station platform and entry to the station.\r\n\nUniversity of Washington Station scheduled installation: 8 a.m. - 4 p.m., 7/28 until 8/16.\r\n\nThis schedule may be subject to change and updates will be provided when available.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/ride-with-us/changes-affect-my-ride/navigating-service-disruptions#1line ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722178800,
+			"end": 1723849200
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5338",
+	  "alert": {
+		"effect": "NO_SERVICE",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "SUSPENSION",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "TECHNICAL_PROBLEM",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "POWER_OUTAGE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "1 Line service is suspended from U-District Station to Northgate Station until further notice due to a Power Outage.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Trains are still running from Angle Lake Station to U-District Station \r\n\nLink Shuttle buses have been ordered to replace 1 Line service from U-District Station to Northgate Station. Updates will be provided once Link Shuttle buses are available.\r\n\nPassengers are encouraged to seek alternative service options and plan ahead for additional travel time.\r\n  ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "SEVERE",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/1LineAlternatives",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722541200
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990001"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990002"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990003"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990004"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990005"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990006"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5341",
+	  "alert": {
+		"effect": "DETOUR",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "LINK_SHUTTLE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Link Shuttle buses are replacing the 1 Line from U District to Northgate until further notice due to Power Outage. ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Regular 1 Line service continues from Angle Lake to U District\r\n\nPassengers are encouraged to seek alternative service options and plan ahead for additional travel time.\r\n\nAffected stops:\r\n\nNorthgate\r\n- To Northgate: Northgate Station & 103rd Ave NE\r\n- To Angle Lake: Northgate Station & NE 100th St\r\n \r\nRoosevelt\r\n- To Northgate: 12th Ave NE & NE 65th St\r\n- To Angle Lake: 12th Ave NE & NE 66th St\r\n \r\nU District\r\n- To Northgate: Brooklyn Ave NE & NE 43rd St\r\n- To Angle Lake: Brooklyn Ave NE & NE 45th St\r\n",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "SEVERE",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://soundtransit.org/1LineAlternatives",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722546300
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990006"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5342",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "DELAY",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "TECHNICAL_PROBLEM",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "POWER_OUTAGE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "1 Line trains are temporarily disrupted until further notice due to a power outage. Please plan ahead for additional travel time.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/1LineAlternatives",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722548280,
+			"end": 1722570132
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479"
+		  }
+		]
+	  }
+	},
+	{
+	  "id": "5350",
+	  "alert": {
+		"effect": "OTHER_EFFECT",
+		"effect_detail": {
+		  "translation": [
+			{
+			  "text": "ANNOUNCEMENT",
+			  "language": "en"
+			}
+		  ]
+		},
+		"cause": "UNKNOWN_CAUSE",
+		"cause_detail": {
+		  "translation": [
+			{
+			  "text": "UNKNOWN_CAUSE",
+			  "language": "en"
+			}
+		  ]
+		},
+		"header_text": {
+		  "translation": [
+			{
+			  "text": "Due to a service disruption, 1 Line trains are not operating between University District and Northgate Stations. Passengers may want to use alternate service to complete your ride.",
+			  "language": "en"
+			}
+		  ]
+		},
+		"description_text": {
+		  "translation": [
+			{
+			  "text": "Affected lines:\r\n1 Line\r\n\nAffected stops:\r\nRoosevelt (to Angle Lake)\r\nRoosevelt (to Northgate)\r\nU District (to Angle Lake)\r\nU District (to Northgate)\r\nUniv of Washington (to Angle Lake)\r\nUniv of Washington (to Northgate)\r\nNorthgate (to Angle Lake)\r\n\nPassengers travelling from 4th and Jackson St. in Seattle towards Everett can take Community Transit route 510 toward Everett and transfer at the Mountlake Terrace Freeway Station. ",
+			  "language": "en"
+			}
+		  ]
+		},
+		"severity_level": "WARNING",
+		"url": {
+		  "translation": [
+			{
+			  "text": "https://www.soundtransit.org/ride-with-us/changes-affect-my-ride/navigating-service-disruptions#1line",
+			  "language": "en"
+			}
+		  ]
+		},
+		"active_period": [
+		  {
+			"start": 1722555300,
+			"end": 1722570132
+		  }
+		],
+		"informed_entity": [
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990001"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990002"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990003"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990004"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990005"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "990006"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99604"
+		  },
+		  {
+			"agency_id": "40",
+			"route_type": 0,
+			"route_id": "100479",
+			"stop_id": "99605"
+		  }
+		]
+	  }
+	}
+  ]
+}

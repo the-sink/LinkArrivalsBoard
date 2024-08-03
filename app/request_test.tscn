@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmxu5ysx8b7lw"]
+
+[sub_resource type="GDScript" id="GDScript_1w3gu"]
+resource_name = "Test"
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$HTTPRequest.request_completed.connect(func(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+		print(body.get_string_from_utf8())
+	)
+	
+	$HTTPRequest.request(\"http://127.0.0.1:5000/arrivals/40_100479\",
+	[\"Content-Type: application/json\"], HTTPClient.METHOD_GET, \"Int'l Dist/Chinatown\"
+	)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1w3gu")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

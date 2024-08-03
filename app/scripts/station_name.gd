@@ -6,4 +6,4 @@ func _ready() -> void:
 	update_label(GlobalState.selected_station_name)
 
 func update_label(new_name: String):
-	text = new_name + " Station"
+	text = new_name

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk4cg1gjsmhtk"]
+
+[ext_resource type="Script" path="res://scripts/route_button.gd" id="1_tnt1k"]
+[ext_resource type="FontFile" uid="uid://bfnyi5iii5vpf" path="res://fonts/Roboto/Roboto-Regular.ttf" id="1_xj12m"]
+[ext_resource type="FontFile" uid="uid://dxew24msj2sd3" path="res://fonts/Roboto/Roboto-Black.ttf" id="2_sm6ly"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vceml"]
+bg_color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fat8s"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv8s0"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Route" type="Button"]
+custom_minimum_size = Vector2(200, 100)
+theme_override_styles/hover = SubResource("StyleBoxFlat_vceml")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fat8s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lv8s0")
+toggle_mode = true
+script = ExtResource("1_tnt1k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="Information" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = -6.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("1_xj12m")
+theme_override_fonts/bold_font = ExtResource("2_sm6ly")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b]Short Name[/b]
+Long Name/Details"

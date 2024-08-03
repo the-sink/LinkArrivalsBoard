@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="LinkArrivalsBoard"
+config/version="2.0.0"
 run/main_scene="res://arrivals.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -20,8 +21,9 @@ config/icon="res://icons/train-variant-custom.png"
 
 [autoload]
 
+ServiceAlerts="*res://scripts/autoload/ServiceAlerts.gd"
 GlobalState="*res://scripts/autoload/GlobalState.gd"
-GTFS="*res://scripts/autoload/GTFS.gd"
+Util="*res://scripts/autoload/Util.gd"
 
 [display]
 
@@ -38,9 +40,20 @@ folder_colors={
 
 [input]
 
-open_menu={
+open_setup={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194370,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+scroll_down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+scroll_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
@@ -48,4 +61,5 @@ open_menu={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.0627451, 0.0745098, 0.0941176, 1)

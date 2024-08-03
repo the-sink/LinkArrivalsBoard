@@ -2,24 +2,24 @@ extends ScrollContainer
 
 @export var oba_request: HTTPRequest
 @export var container: VBoxContainer
+@export var no_arrivals_text: Label
 
+@export_category("Timers")
 @export var time_delta_timer: Timer
 @export var data_timer: Timer
 
+@export_category("Service Alerts Content")
+@export var service_alert_container: ColorRect
+@export var service_alert_text: Label
+@export var no_service_warning: ColorRect
+@export var no_service_anim: AnimationPlayer
+
 @onready var arrival_template := preload("res://arrival_template.tscn")
 
-#TODO: Make arrivals list scrollable on touch displays
-#TODO: Data refresh error handling`
-
-var request_queue_length: int = 0:
-	set(val):
-		request_queue_length = val
-		if request_queue_length == 0:
-			clear_removed_trips()
-			do_time_delta_refresh()
+#TODO: Data refresh error handling
 
 func start_if_ready():
-	if GlobalState.display_state == GlobalState.DisplayState.RUNNING:
+	if GlobalState.display_state == GlobalState.DisplayState.READY:
 		time_delta_timer.start()
 		data_timer.start()
 		do_data_refresh()
@@ -35,16 +35,27 @@ func clear_removed_trips():
 		if arrival.update_cycle_flag == false:
 			get_node(arrival.ui_item).queue_free()
 			GlobalState.current_arrivals.erase(tripId)
+	
+	no_arrivals_text.visible = GlobalState.current_arrivals.size() < 1
 
 func do_data_refresh() -> void:
-	var selected_station_list: Array = GlobalState.station_list[GlobalState.selected_station_name]
-	request_queue_length = selected_station_list.size()
 	for arrival in GlobalState.current_arrivals.values():
 		arrival.update_cycle_flag = false
+		
+	oba_request.request(GlobalState.proxy_server_base_url + "/arrivals/" + GlobalState.selected_route_id,
+	["Content-Type: application/json"], HTTPClient.METHOD_GET, GlobalState.selected_station_name
+	)
 	
-	for stop_id in selected_station_list:
-		oba_request.request("https://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/40_" + stop_id +".json?key=" + GlobalState.api_key + "&minutesAfter=90")
-		await oba_request.request_completed
+	var service_alerts = await ServiceAlerts.get_relevant_alerts()
+	var relevant_alerts = service_alerts['relevant_alerts']
+	visible = not service_alerts['no_service']
+	no_service_warning.visible = not visible
+	if no_service_warning.visible: no_service_anim.play("WarningIconFade")
+	else: no_service_anim.stop()
+	
+	service_alert_container.visible = len(relevant_alerts) > 0
+	if service_alert_container.visible:
+		service_alert_text.text = relevant_alerts[0]['text']
 
 func do_time_delta_refresh() -> void:
 	var current_time: int = Time.get_unix_time_from_system()
@@ -69,12 +80,8 @@ func do_time_delta_refresh() -> void:
 
 func _on_oba_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if response_code == 200:
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		if json == null:
-			request_queue_length -= 1
-			return
-		var arrivals = json['data']['entry']['arrivalsAndDepartures']
-		var routeReferences = json['data']['references']['routes']
+		var arrivals = JSON.parse_string(body.get_string_from_utf8())
+		if arrivals == null: return
 		
 		for arrival in arrivals:
 			if arrival['distanceFromStop'] < 0: continue
@@ -91,13 +98,8 @@ func _on_oba_request_request_completed(result: int, response_code: int, headers:
 				ui_item = get_node(this_arrival.ui_item)
 			
 			this_arrival.line_number = arrival['routeShortName'].split(" ")[0]
-			
-			if not GlobalState.line_color_cache.has(arrival['routeId']):
-				for route in routeReferences:
-					if route['id'] == arrival['routeId']:
-						GlobalState.line_color_cache[route['id']] = Color("#"+route['color'])
-						break
-			this_arrival.line_color = GlobalState.line_color_cache.get_or_add(arrival['routeId'], Color.BLACK)
+			this_arrival.line_color = Color(GlobalState.route_metadata[arrival['routeId']]['color'])
+			this_arrival.text_color = Color(GlobalState.route_metadata[arrival['routeId']]['text_color'])
 			
 			this_arrival.headsign_text = arrival['tripHeadsign']
 			this_arrival.is_realtime = arrival['predictedArrivalTime'] != null and arrival['predictedArrivalTime'] != 0
@@ -106,7 +108,9 @@ func _on_oba_request_request_completed(result: int, response_code: int, headers:
 			
 			ui_item.line_number = this_arrival.line_number
 			ui_item.line_color = this_arrival.line_color
+			ui_item.text_color = this_arrival.text_color
 			ui_item.headsign_text = this_arrival.headsign_text
 			ui_item.is_realtime = this_arrival.is_realtime
 	
-	request_queue_length -= 1
+	clear_removed_trips()
+	do_time_delta_refresh()

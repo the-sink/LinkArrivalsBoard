@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://mlfhbcyi4y2p"]
+
+[sub_resource type="GDScript" id="GDScript_6wjb4"]
+resource_name = "InputDisplay"
+script/source = "extends Label
+
+func _input(event: InputEvent) -> void:
+	text = str(event)
+"
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Input"
+autowrap_mode = 2
+script = SubResource("GDScript_6wjb4")

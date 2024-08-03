@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp45qxhh06eqs"]
+
+[ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_qvhs5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18s35"]
+bg_color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13ei1"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyiq4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="StationButton" type="Button"]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 8.0
+offset_bottom = 60.0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_qvhs5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_18s35")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_13ei1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyiq4")
+toggle_mode = true
+text = "  Station Name  "

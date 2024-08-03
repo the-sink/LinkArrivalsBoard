@@ -3,6 +3,7 @@ extends Resource
 
 @export var line_number: String
 @export var line_color: Color = Color.BLACK
+@export var text_color: Color = Color.WHITE
 @export var headsign_text: String
 @export var is_realtime: bool = false
 @export var arrival_timestamp: int
