@@ -1,5 +1,7 @@
 extends Node
 
+const TEST_SHOW_ANY_ALERT: bool = true
+
 var _http: HTTPRequest
 
 var cached_alerts := []
@@ -19,7 +21,7 @@ func _update_alerts():
 	var err = _http.request("https://s3.amazonaws.com/st-service-alerts-prod/alerts_pb.json")
 	if err == OK: cached_alerts = JSON.parse_string((await _http.request_completed)[3].get_string_from_utf8())['entity']
 
-func get_relevant_alerts():
+func get_relevant_alerts(route_id: String, station_name: String):
 	await _update_alerts()
 	
 	var relevant_alerts := []
@@ -28,7 +30,7 @@ func get_relevant_alerts():
 	
 	for alert in cached_alerts:
 		var alert_data = alert['alert']
-		if alert_data['effect_detail']['translation'][0]['text'] != "DELAY":
+		if not TEST_SHOW_ANY_ALERT and alert_data['effect_detail']['translation'][0]['text'] != "DELAY":
 			if alert_data['severity_level'] != "SEVERE": continue
 		var active_periods = alert_data['active_period']
 		var is_active: bool = false
@@ -42,14 +44,15 @@ func get_relevant_alerts():
 		var informed = alert_data['informed_entity']
 		var should_be_informed := false
 		for entity in informed:
+			if not 'agency_id' in entity: continue
 			var agency_prefix := str(entity['agency_id']) + "_"
-			if agency_prefix + entity['route_id'] != GlobalState.selected_route_id: continue
+			if agency_prefix + entity['route_id'] != route_id: continue
 			var stop_id = entity.get('stop_id', null)
 			if stop_id == null:
 				should_be_informed = true
 				break
 			else:
-				var valid_stop_ids = GlobalState.station_list[GlobalState.selected_station_name]
+				var valid_stop_ids = GlobalState.station_list[station_name]
 				if valid_stop_ids.has(agency_prefix + str(stop_id)):
 					should_be_informed = true
 					break

@@ -5,6 +5,8 @@ signal station_name_changed(new_name: String)
 signal display_state_changed()
 signal station_list_changed()
 
+signal on_data_updated()
+
 enum DisplayState {
 	WAITING,
 	WAITING_HAS_META,
@@ -30,8 +32,6 @@ var selected_station_name := "":
 		config.save('user://config.cfg')
 		station_name_changed.emit(val)
 
-var current_arrivals := {}
-
 var station_list := {}:
 	set(val):
 		station_list = val
@@ -41,8 +41,6 @@ var display_state: DisplayState = DisplayState.WAITING:
 	set(val):
 		display_state = val
 		display_state_changed.emit()
-var error_information: String = ""
-
 
 func _ready() -> void:
 	var http := HTTPRequest.new()

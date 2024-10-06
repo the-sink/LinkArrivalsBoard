@@ -24,6 +24,33 @@ font_size = 60
 font = ExtResource("2_3gn2b")
 font_size = 68
 
+[sub_resource type="Animation" id="Animation_ltdce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("A:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("B:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_dm8t4"]
 resource_name = "SignalEffect"
 length = 4.0
@@ -53,33 +80,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ltdce"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("A:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("B:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v5qg3"]
 _data = {
 "RESET": SubResource("Animation_ltdce"),
@@ -91,6 +91,7 @@ font = ExtResource("4_rig73")
 font_size = 68
 
 [node name="Arrival" type="HBoxContainer"]
+theme_override_constants/separation = 0
 script = ExtResource("1_1hu8g")
 
 [node name="LineNumber" type="Panel" parent="."]
@@ -115,7 +116,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="."]
-custom_minimum_size = Vector2(6, 0)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 mouse_filter = 1
 
@@ -166,12 +167,13 @@ libraries = {
 
 [node name="ArrivalTime" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.913725)
+custom_minimum_size = Vector2(195, 0)
 layout_mode = 2
 mouse_filter = 1
 text = "..."
 label_settings = SubResource("LabelSettings_kqpws")
 
 [node name="Spacer3" type="Control" parent="."]
-custom_minimum_size = Vector2(6, 0)
+custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 mouse_filter = 1
