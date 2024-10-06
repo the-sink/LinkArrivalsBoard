@@ -1,6 +1,6 @@
 extends Node
 
-const TEST_SHOW_ANY_ALERT: bool = true
+const TEST_SHOW_ANY_ALERT: bool = false
 
 var _http: HTTPRequest
 

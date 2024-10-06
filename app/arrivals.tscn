@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bthpipfaf55qo"]
+[gd_scene load_steps=33 format=3 uid="uid://bthpipfaf55qo"]
 
 [ext_resource type="Script" path="res://scripts/window_handler.gd" id="1_smm0t"]
 [ext_resource type="Script" path="res://scripts/classes/data_container.gd" id="2_gyfmi"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dwau0gertuibk" path="res://icons/alert-octagon.png" id="9_cpd2q"]
 [ext_resource type="FontFile" uid="uid://r7o60u5nw1tx" path="res://fonts/RobotoCondensed/RobotoCondensed-Medium.ttf" id="10_ufsul"]
 [ext_resource type="FontFile" uid="uid://3xukjm7epjdx" path="res://fonts/Roboto/Roboto-BoldItalic.ttf" id="12_08mcj"]
+[ext_resource type="Script" path="res://scripts/service_alert_ui_item.gd" id="14_ul2oh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouqqy"]
 font = ExtResource("12_08mcj")
@@ -120,14 +121,85 @@ height = 10
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_81fuc"]
-font = ExtResource("10_ufsul")
-font_size = 24
-
 [sub_resource type="LabelSettings" id="LabelSettings_ncqkl"]
 line_spacing = 1.0
 font = ExtResource("10_ufsul")
 font_size = 20
+
+[sub_resource type="Animation" id="Animation_w8amk"]
+resource_name = "Fade"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelArea:scroll_horizontal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"do_scroll"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nrb7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelArea:scroll_horizontal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6q4l"]
+_data = {
+"Fade": SubResource("Animation_w8amk"),
+"RESET": SubResource("Animation_nrb7v")
+}
 
 [node name="StationView" type="Control" node_paths=PackedStringArray("arrivals_scroll_container")]
 layout_mode = 3
@@ -142,8 +214,10 @@ arrivals_scroll_container = NodePath("ArrivalsList")
 [node name="DataContainer" type="Node" parent="."]
 script = ExtResource("2_gyfmi")
 
-[node name="DataUpdateHandler" type="Node" parent="." node_paths=PackedStringArray("data_timer")]
+[node name="DataUpdateHandler" type="Node" parent="." node_paths=PackedStringArray("data_container", "oba_request", "data_timer")]
 script = ExtResource("2_v08da")
+data_container = NodePath("../DataContainer")
+oba_request = NodePath("OBARequest")
 data_timer = NodePath("DataRefresh")
 
 [node name="DataRefresh" type="Timer" parent="DataUpdateHandler"]
@@ -151,7 +225,7 @@ wait_time = 30.0
 
 [node name="OBARequest" type="HTTPRequest" parent="DataUpdateHandler"]
 
-[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("time_delta_timer", "no_arrivals_text", "loading_spinner", "spinner_anim")]
+[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("data_container", "arrivals_list_container", "time_delta_timer", "no_arrivals_text", "loading_spinner", "spinner_anim")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -165,6 +239,8 @@ grow_vertical = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("2_pfn2a")
+data_container = NodePath("../DataContainer")
+arrivals_list_container = NodePath("Container")
 time_delta_timer = NodePath("TimeDeltaRefresh")
 no_arrivals_text = NodePath("../NoArrivalsText")
 loading_spinner = NodePath("../LoadingSpinner")
@@ -335,7 +411,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_h7wr2")
 
-[node name="ServiceAlert" type="ColorRect" parent="."]
+[node name="ServiceAlert" type="ColorRect" parent="." node_paths=PackedStringArray("data_container", "message_scroll_container", "message_label", "text_fade_anim")]
 visible = false
 modulate = Color(1, 1, 1, 0.921569)
 layout_mode = 1
@@ -343,11 +419,15 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
-offset_bottom = -8.0
+offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.262745, 0.254902, 0.258824, 1)
+script = ExtResource("14_ul2oh")
+data_container = NodePath("../DataContainer")
+message_scroll_container = NodePath("LabelArea")
+message_label = NodePath("LabelArea/Label")
+text_fade_anim = NodePath("TextFadeAnim")
 
 [node name="Header" type="ColorRect" parent="ServiceAlert"]
 layout_mode = 1
@@ -358,7 +438,7 @@ grow_horizontal = 2
 color = Color(1, 0.701961, 0.133333, 0.87451)
 
 [node name="IconArea" type="ColorRect" parent="ServiceAlert"]
-custom_minimum_size = Vector2(92, 92)
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -375,54 +455,43 @@ grow_vertical = 2
 texture = ExtResource("9_cpd2q")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="ServiceAlert"]
-modulate = Color(1, 0.701961, 0.133333, 1)
+[node name="LabelBackground" type="ColorRect" parent="ServiceAlert"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
+offset_left = 64.0
 offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Link 1 and 2 Line fares changing August 30"
-label_settings = SubResource("LabelSettings_81fuc")
-autowrap_mode = 3
-
-[node name="SmallLabelBackground" type="ColorRect" parent="ServiceAlert"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = 45.0
 offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.87451)
 
-[node name="SmallLabelArea" type="ScrollContainer" parent="ServiceAlert"]
+[node name="LabelArea" type="ScrollContainer" parent="ServiceAlert"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = 45.0
+offset_left = 64.0
+offset_top = 10.0
 offset_right = -10.0
 offset_bottom = -10.0
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="SmallLabel" type="Label" parent="ServiceAlert/SmallLabelArea"]
+[node name="Label" type="Label" parent="ServiceAlert/LabelArea"]
 modulate = Color(1, 0.901765, 0.762582, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Starting Friday, Aug. 30, the regular adult fare for Link light rail will be $3. This flat fare will replace Sound Transit’s distance-based fares, which range from $2.25 to $3.50. One-way fares for the T Line in Tacoma will remain $2. The change to flat fares will simplify Link travel by eliminating the need for passengers using ORCA cards to tap off when they complete their trip. Link 1 Line and 2 Line passengers will only need to tap before entering the fare-paid zone. Sounder passengers will continue to tap on before boarding and tap off when they exit."
+text = "Message Content"
 label_settings = SubResource("LabelSettings_ncqkl")
 vertical_alignment = 1
+
+[node name="TextFadeAnim" type="AnimationPlayer" parent="ServiceAlert"]
+libraries = {
+"": SubResource("AnimationLibrary_t6q4l")
+}
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="timeout" from="DataUpdateHandler/DataRefresh" to="DataUpdateHandler" method="do_data_refresh"]

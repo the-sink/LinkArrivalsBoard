@@ -17,13 +17,6 @@ func _ready() -> void:
 	
 	data_container.data_update_finished.connect(_on_data_update_finished)
 
-	#var service_alerts = data_container.current_service_alerts
-	#var relevant_alerts = service_alerts['relevant_alerts']
-	#
-	#service_alert_container.visible = len(relevant_alerts) > 0
-	#if service_alert_container.visible:
-		#service_alert_text.text = relevant_alerts[0]['text']
-
 func do_time_delta_refresh() -> void:
 	var current_time: int = Time.get_unix_time_from_system()
 	var sort_array: Array[int] = []
@@ -50,36 +43,23 @@ func _on_data_update_finished() -> void:
 	spinner_anim.active = false
 	visible = not data_container.current_service_alerts['no_service']
 	
-	var arrivals = data_container.current_arrivals
-	
+	var arrivals = data_container.current_arrivals.values()
 	no_arrivals_text.visible = arrivals.size() < 1
 	for arrival in arrivals:
-		if arrival['distanceFromStop'] < 0: continue
-		
-		var this_arrival: Arrival = arrivals.get_or_add(arrival['tripId'], Arrival.new())
 		var ui_item: Control
 		
-		if this_arrival.ui_item.is_empty():
+		if arrival.ui_item.is_empty():
 			ui_item = arrival_template.instantiate()
 			arrivals_list_container.add_child(ui_item)
 			await get_tree().process_frame
-			this_arrival.ui_item = ui_item.get_path()
+			arrival.ui_item = ui_item.get_path()
 		else:
-			ui_item = get_node(this_arrival.ui_item)
+			ui_item = get_node(arrival.ui_item)
 		
-		this_arrival.line_number = arrival['routeShortName'].split(" ")[0]
-		this_arrival.line_color = Color(GlobalState.route_metadata[arrival['routeId']]['color'])
-		this_arrival.text_color = Color(GlobalState.route_metadata[arrival['routeId']]['text_color'])
-		
-		this_arrival.headsign_text = arrival['tripHeadsign']
-		this_arrival.is_realtime = arrival['predictedArrivalTime'] != null and arrival['predictedArrivalTime'] != 0
-		this_arrival.arrival_timestamp = (arrival['predictedArrivalTime' if this_arrival.is_realtime else 'scheduledArrivalTime']) / 1000
-		this_arrival.update_cycle_flag = true
-		
-		ui_item.line_number = this_arrival.line_number
-		ui_item.line_color = this_arrival.line_color
-		ui_item.text_color = this_arrival.text_color
-		ui_item.headsign_text = this_arrival.headsign_text
-		ui_item.is_realtime = this_arrival.is_realtime
+		ui_item.line_number = arrival.line_number
+		ui_item.line_color = arrival.line_color
+		ui_item.text_color = arrival.text_color
+		ui_item.headsign_text = arrival.headsign_text
+		ui_item.is_realtime = arrival.is_realtime
 
 	do_time_delta_refresh()
