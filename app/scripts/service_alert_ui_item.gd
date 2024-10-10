@@ -13,8 +13,7 @@ func _ready() -> void:
 	data_container.data_update_finished.connect(_on_data_update_finished)
 
 func do_scroll() -> void:
-	if scroll_tween:
-		scroll_tween.kill()
+	if scroll_tween: scroll_tween.kill()
 	if not visible: return
 	var max_h_scroll: float = message_label.label_settings.font.get_string_size(message_label.text).x
 	scroll_tween = create_tween()
@@ -29,10 +28,12 @@ func _on_data_update_finished() -> void:
 	
 	visible = len(relevant_alerts) > 0
 
+	# TODO: Show both header and description text?
+	# Maybe bold which ever one is shorter, as sometimes header and description usage seems to interchange (for some accursed, hellish reason)
 	if visible:
 		var full_message: String = " "
 		for alert in relevant_alerts:
-			full_message += alert['text'] + SEP_STRING
-		full_message = full_message.rstrip(SEP_STRING)
+			full_message += alert['header_text'] + SEP_STRING
+		full_message = full_message.rstrip(SEP_STRING).replace("\n", " ")
 		message_label.text = full_message + " "
 		if not (scroll_tween and scroll_tween.is_running()): do_scroll()

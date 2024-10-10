@@ -19,7 +19,11 @@ func _update_alerts():
 	#var file = FileAccess.open("res://test_alerts_scenario.json", FileAccess.READ)
 	#cached_alerts = JSON.parse_string(file.get_as_text())['entity']
 	var err = _http.request("https://s3.amazonaws.com/st-service-alerts-prod/alerts_pb.json")
-	if err == OK: cached_alerts = JSON.parse_string((await _http.request_completed)[3].get_string_from_utf8())['entity']
+	if err == OK:
+		# TODO: Handle this more properly, if the response isn't exactly correct this will break
+		var parsed_response = JSON.parse_string((await _http.request_completed)[3].get_string_from_utf8())
+		cached_alerts = parsed_response['entity']
+		
 
 func get_relevant_alerts(route_id: String, station_name: String):
 	await _update_alerts()
@@ -61,7 +65,8 @@ func get_relevant_alerts(route_id: String, station_name: String):
 		
 		relevant_alerts.append({
 			'effect': alert_data['effect'],
-			'text': alert_data['header_text']['translation'][0]['text']
+			'header_text': alert_data['header_text']['translation'][0]['text'],
+			'description_text': alert_data['description_text']['translation'][0]['text']
 		})
 	
 	return {
