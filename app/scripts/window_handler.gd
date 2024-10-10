@@ -6,7 +6,6 @@ var scroll_speed := 500.0
 
 func _ready() -> void:
 	if not OS.has_feature("editor") and not OS.has_feature("wasm"):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _process(delta: float) -> void:

@@ -71,6 +71,8 @@ func _ready() -> void:
 	if load_status == OK:
 		selected_route_id = config.get_value('config', 'route_id', '')
 		selected_station_name = config.get_value('config', 'station_name', '')
+		if GlobalState.config.get_value('config', 'fullscreen', true):
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	
 	# send to setup if we're in station view on startup, but are missing information
 	if get_tree().current_scene.name == "StationView":

@@ -27,7 +27,7 @@ font_size = 20
 content_margin_top = 9.0
 content_margin_bottom = 8.0
 
-[node name="Setup" type="ColorRect"]
+[node name="Setup" type="ColorRect" node_paths=PackedStringArray("fullscreen_option")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,6 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.721569)
 script = ExtResource("1_lsguj")
+fullscreen_option = NodePath("MainPanel/ColorRect/HBoxContainer/FullscreenOption")
 
 [node name="MainPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -87,6 +88,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Setup"
 label_settings = SubResource("LabelSettings_q6hcq")
+
+[node name="FullscreenOption" type="CheckBox" parent="MainPanel/ColorRect/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = " Fullscreen"
 
 [node name="Steps" type="VBoxContainer" parent="MainPanel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -142,4 +148,5 @@ theme_override_fonts/font = ExtResource("5_s75tk")
 theme_override_font_sizes/font_size = 24
 text = "Continue"
 
+[connection signal="toggled" from="MainPanel/ColorRect/HBoxContainer/FullscreenOption" to="." method="_on_fullscreen_option_toggled"]
 [connection signal="pressed" from="MainPanel/Steps/Continue" to="." method="_on_continue_pressed"]
