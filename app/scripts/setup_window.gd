@@ -4,6 +4,8 @@ extends ColorRect
 @onready var station_list_container: HBoxContainer = $MainPanel/Steps/StationList/HBoxContainer
 @onready var continue_button: Button = $MainPanel/Steps/Continue
 
+@export var fullscreen_option: CheckBox
+
 var already_loaded: bool = false
 
 func display_state_changed() -> void:
@@ -51,6 +53,9 @@ func update_station_list():
 func _ready() -> void:
 	GlobalState.display_state_changed.connect(display_state_changed)
 	GlobalState.station_list_changed.connect(update_station_list)
+	
+	fullscreen_option.button_pressed = GlobalState.config.get_value('config', 'fullscreen', true)
+	
 	display_state_changed()
 	update_station_list()
 
@@ -63,3 +68,13 @@ func _on_continue_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_setup"):
 		continue_button.grab_focus()
+
+
+func _on_fullscreen_option_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	GlobalState.config.set_value('config', 'fullscreen', toggled_on)
+	GlobalState.config.save('user://config.cfg')

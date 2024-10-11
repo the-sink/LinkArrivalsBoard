@@ -21,6 +21,7 @@ extends HBoxContainer
 		line_number_label.self_modulate = text_color
 @export var headsign_text: String = "Unknown":
 	set(val):
+		if val.begins_with("Lynnwood"): val = "Lynnwood" # keep only "Lynnwood", like the actual signs do... not sure if the API has this conversion anywhere
 		headsign_text = val
 		headsign_label.text = headsign_text
 @export var is_realtime: bool = false:

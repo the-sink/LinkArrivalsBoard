@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx0dpr5sv074v"
-path="res://.godot/imported/train-variant-custom.png-9a6ae3656c0090e0ac99d0cfdd768890.ctex"
+uid="uid://b7x42wnnc2f2d"
+path="res://.godot/imported/escalator-box-custom.png-4c9e456fcf1eb6e05465d5ccbd256659.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/train-variant-custom.png"
-dest_files=["res://.godot/imported/train-variant-custom.png-9a6ae3656c0090e0ac99d0cfdd768890.ctex"]
+source_file="res://icons/escalator-box-custom.png"
+dest_files=["res://.godot/imported/escalator-box-custom.png-4c9e456fcf1eb6e05465d5ccbd256659.ctex"]
 
 [params]
 

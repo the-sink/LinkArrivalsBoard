@@ -1,22 +1,64 @@
-[gd_scene load_steps=23 format=3 uid="uid://bthpipfaf55qo"]
+[gd_scene load_steps=33 format=3 uid="uid://bthpipfaf55qo"]
 
 [ext_resource type="Script" path="res://scripts/window_handler.gd" id="1_smm0t"]
+[ext_resource type="Script" path="res://scripts/classes/data_container.gd" id="2_gyfmi"]
 [ext_resource type="FontFile" uid="uid://xfkowo6ajmkd" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hp1oq"]
 [ext_resource type="Script" path="res://scripts/arrivals_handler.gd" id="2_pfn2a"]
+[ext_resource type="Script" path="res://scripts/data_update_handler.gd" id="2_v08da"]
 [ext_resource type="FontFile" uid="uid://dxew24msj2sd3" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_o32wk"]
 [ext_resource type="Texture2D" uid="uid://cit23uues803t" path="res://icons/cog-custom.png" id="4_2rxun"]
-[ext_resource type="Script" path="res://scripts/station_name.gd" id="4_j8lyt"]
+[ext_resource type="Script" path="res://scripts/arrivals_header_info.gd" id="4_j8lyt"]
+[ext_resource type="Texture2D" uid="uid://b0xcmrfb6rhrl" path="res://icons/loading.png" id="4_on23v"]
 [ext_resource type="Script" path="res://scripts/clock.gd" id="5_45w2v"]
 [ext_resource type="FontFile" uid="uid://d1my2mcq31arm" path="res://fonts/RobotoCondensed/RobotoCondensed-Black.ttf" id="7_tsmc5"]
 [ext_resource type="Texture2D" uid="uid://5chn0pg1uu6c" path="res://icons/alert-circle.png" id="8_4s1np"]
 [ext_resource type="Texture2D" uid="uid://dwau0gertuibk" path="res://icons/alert-octagon.png" id="9_cpd2q"]
 [ext_resource type="FontFile" uid="uid://r7o60u5nw1tx" path="res://fonts/RobotoCondensed/RobotoCondensed-Medium.ttf" id="10_ufsul"]
 [ext_resource type="FontFile" uid="uid://3xukjm7epjdx" path="res://fonts/Roboto/Roboto-BoldItalic.ttf" id="12_08mcj"]
+[ext_resource type="Script" path="res://scripts/service_alert_ui_item.gd" id="14_ul2oh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouqqy"]
 font = ExtResource("12_08mcj")
 font_size = 40
 font_color = Color(1, 1, 1, 0.333333)
+
+[sub_resource type="Animation" id="Animation_8my6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bgo5s"]
+resource_name = "Spin"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hrla"]
+_data = {
+"RESET": SubResource("Animation_8my6b"),
+"Spin": SubResource("Animation_bgo5s")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_73avc"]
 font = ExtResource("2_hp1oq")
@@ -26,6 +68,21 @@ font_size = 30
 font = ExtResource("7_tsmc5")
 font_size = 24
 font_color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[sub_resource type="Animation" id="Animation_bltr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_dlnnw"]
 resource_name = "WarningIconFade"
@@ -42,21 +99,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.568627), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bltr2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5uk7"]
@@ -79,9 +121,85 @@ height = 10
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_81fuc"]
+[sub_resource type="LabelSettings" id="LabelSettings_ncqkl"]
+line_spacing = 1.0
 font = ExtResource("10_ufsul")
-font_size = 22
+font_size = 20
+
+[sub_resource type="Animation" id="Animation_w8amk"]
+resource_name = "Fade"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelArea:scroll_horizontal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"do_scroll"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nrb7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelArea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelArea:scroll_horizontal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6q4l"]
+_data = {
+"Fade": SubResource("Animation_w8amk"),
+"RESET": SubResource("Animation_nrb7v")
+}
 
 [node name="StationView" type="Control" node_paths=PackedStringArray("arrivals_scroll_container")]
 layout_mode = 3
@@ -93,7 +211,21 @@ grow_vertical = 2
 script = ExtResource("1_smm0t")
 arrivals_scroll_container = NodePath("ArrivalsList")
 
-[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("oba_request", "container", "no_arrivals_text", "time_delta_timer", "data_timer", "service_alert_container", "service_alert_text", "no_service_warning", "no_service_anim")]
+[node name="DataContainer" type="Node" parent="."]
+script = ExtResource("2_gyfmi")
+
+[node name="DataUpdateHandler" type="Node" parent="." node_paths=PackedStringArray("data_container", "oba_request", "data_timer")]
+script = ExtResource("2_v08da")
+data_container = NodePath("../DataContainer")
+oba_request = NodePath("OBARequest")
+data_timer = NodePath("DataRefresh")
+
+[node name="DataRefresh" type="Timer" parent="DataUpdateHandler"]
+wait_time = 30.0
+
+[node name="OBARequest" type="HTTPRequest" parent="DataUpdateHandler"]
+
+[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("data_container", "arrivals_list_container", "time_delta_timer", "no_arrivals_text", "loading_spinner", "spinner_anim")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -107,24 +239,23 @@ grow_vertical = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("2_pfn2a")
-oba_request = NodePath("OBARequest")
-container = NodePath("Container")
+data_container = NodePath("../DataContainer")
+arrivals_list_container = NodePath("Container")
+time_delta_timer = NodePath("TimeDeltaRefresh")
 no_arrivals_text = NodePath("../NoArrivalsText")
-time_delta_timer = NodePath("../TimeDeltaRefresh")
-data_timer = NodePath("../DataRefresh")
-service_alert_container = NodePath("../ServiceAlert")
-service_alert_text = NodePath("../ServiceAlert/Label")
-no_service_warning = NodePath("../Header/StationName/NoServiceWarning")
-no_service_anim = NodePath("../Header/StationName/NoServiceWarning/AnimationPlayer")
+loading_spinner = NodePath("../LoadingSpinner")
+spinner_anim = NodePath("../LoadingSpinner/AnimationPlayer")
 
 [node name="Container" type="VBoxContainer" parent="ArrivalsList"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 22
 
-[node name="OBARequest" type="HTTPRequest" parent="ArrivalsList"]
+[node name="TimeDeltaRefresh" type="Timer" parent="ArrivalsList"]
+wait_time = 5.0
 
 [node name="NoArrivalsText" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -135,6 +266,29 @@ text = "No arrivals in the next 90 minutes"
 label_settings = SubResource("LabelSettings_ouqqy")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LoadingSpinner" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_on23v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingSpinner"]
+libraries = {
+"": SubResource("AnimationLibrary_5hrla")
+}
 
 [node name="Header" type="ColorRect" parent="."]
 layout_mode = 1
@@ -169,7 +323,7 @@ grow_vertical = 2
 texture = ExtResource("4_2rxun")
 expand_mode = 1
 
-[node name="StationName" type="Label" parent="Header"]
+[node name="StationName" type="Label" parent="Header" node_paths=PackedStringArray("no_service_indicator", "no_service_anim", "data_container")]
 modulate = Color(1, 1, 1, 0.866667)
 layout_mode = 1
 anchors_preset = -1
@@ -180,6 +334,9 @@ text = "..."
 label_settings = SubResource("LabelSettings_73avc")
 vertical_alignment = 1
 script = ExtResource("4_j8lyt")
+no_service_indicator = NodePath("NoServiceWarning")
+no_service_anim = NodePath("NoServiceWarning/AnimationPlayer")
+data_container = NodePath("../../DataContainer")
 
 [node name="NoServiceWarning" type="ColorRect" parent="Header/StationName"]
 visible = false
@@ -254,7 +411,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_h7wr2")
 
-[node name="ServiceAlert" type="ColorRect" parent="."]
+[node name="ServiceAlert" type="ColorRect" parent="." node_paths=PackedStringArray("data_container", "message_scroll_container", "message_label", "text_fade_anim")]
 visible = false
 modulate = Color(1, 1, 1, 0.921569)
 layout_mode = 1
@@ -262,11 +419,15 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
-offset_bottom = -8.0
+offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.262745, 0.254902, 0.258824, 1)
+script = ExtResource("14_ul2oh")
+data_container = NodePath("../DataContainer")
+message_scroll_container = NodePath("LabelArea")
+message_label = NodePath("LabelArea/Label")
+text_fade_anim = NodePath("TextFadeAnim")
 
 [node name="Header" type="ColorRect" parent="ServiceAlert"]
 layout_mode = 1
@@ -277,7 +438,7 @@ grow_horizontal = 2
 color = Color(1, 0.701961, 0.133333, 0.87451)
 
 [node name="IconArea" type="ColorRect" parent="ServiceAlert"]
-custom_minimum_size = Vector2(92, 92)
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -294,30 +455,47 @@ grow_vertical = 2
 texture = ExtResource("9_cpd2q")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="ServiceAlert"]
-modulate = Color(1, 0.701961, 0.133333, 1)
+[node name="LabelBackground" type="ColorRect" parent="ServiceAlert"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
+offset_left = 64.0
+offset_top = 10.0
 offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "Service Alert Description"
-label_settings = SubResource("LabelSettings_81fuc")
+color = Color(0, 0, 0, 0.87451)
+
+[node name="LabelArea" type="ScrollContainer" parent="ServiceAlert"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Label" type="Label" parent="ServiceAlert/LabelArea"]
+modulate = Color(1, 0.901765, 0.762582, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Message Content"
+label_settings = SubResource("LabelSettings_ncqkl")
 vertical_alignment = 1
-autowrap_mode = 3
 
-[node name="TimeDeltaRefresh" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="DataRefresh" type="Timer" parent="."]
-wait_time = 30.0
+[node name="TextFadeAnim" type="AnimationPlayer" parent="ServiceAlert"]
+libraries = {
+"": SubResource("AnimationLibrary_t6q4l")
+}
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="request_completed" from="ArrivalsList/OBARequest" to="ArrivalsList" method="_on_oba_request_request_completed"]
+[connection signal="timeout" from="DataUpdateHandler/DataRefresh" to="DataUpdateHandler" method="do_data_refresh"]
+[connection signal="request_completed" from="DataUpdateHandler/OBARequest" to="DataUpdateHandler" method="_on_oba_request_request_completed"]
+[connection signal="timeout" from="ArrivalsList/TimeDeltaRefresh" to="ArrivalsList" method="do_time_delta_refresh"]
 [connection signal="pressed" from="Header/SetupButton" to="." method="_on_setup_button_pressed"]
 [connection signal="timeout" from="Header/Time/Timer" to="Header/Time" method="update_clock"]
-[connection signal="timeout" from="TimeDeltaRefresh" to="ArrivalsList" method="do_time_delta_refresh"]
-[connection signal="timeout" from="DataRefresh" to="ArrivalsList" method="do_data_refresh"]
