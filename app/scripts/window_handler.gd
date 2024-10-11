@@ -4,16 +4,26 @@ extends Control
 
 var scroll_speed := 500.0
 
-func _ready() -> void:
-	if not OS.has_feature("editor") and not OS.has_feature("wasm"):
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+var elapsed_time: float = 0.0
+var last_mouse_motion: float = 0.0
+
+var mouse_visible: float = true:
+	set(val):
+		if mouse_visible != val:
+			mouse_visible = val
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if mouse_visible else Input.MOUSE_MODE_HIDDEN
 
 func _process(delta: float) -> void:
 	arrivals_scroll_container.scroll_vertical += Input.get_axis("scroll_up", "scroll_down") * scroll_speed * delta
+	elapsed_time += delta
+	if elapsed_time - last_mouse_motion > 5: mouse_visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("open_setup"):
 		get_tree().change_scene_to_file("res://setup.tscn")
+	elif event is InputEventMouseMotion:
+		last_mouse_motion = elapsed_time
+		mouse_visible = true
 
 
 func _on_setup_button_pressed() -> void:
