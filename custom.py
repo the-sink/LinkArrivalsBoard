@@ -1,0 +1,42 @@
+# These are custom build settings for compiling export templates
+# (Will disable engine functionality that the arrivals board app doesn't need)
+
+# Steps: Clone godotengine/godot repo, install scons build system, place this custom.py file in the Godot source root directory, run "scons platform=<your platform>"
+# You should probably make sure your local copy of the repo is at the commit ID associated with the same editor version you are using to edit the project! 
+
+# More info: https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html
+
+target = "template_release"
+module_text_server_adv_enabled = "no"
+module_text_server_fb_enabled = "yes"
+disable_3d = "yes"
+vulkan = "no"
+module_basis_universal_enabled = "no"
+module_bmp_enabled = "no"
+module_camera_enabled = "no"
+module_csg_enabled = "no"
+module_dds_enabled = "no"
+module_gridmap_enabled = "no"
+module_hdr_enabled = "no"
+module_ktx_enabled = "no"
+module_mbedtls_enabled = "no"
+module_meshoptimizer_enabled = "no"
+module_minimp3_enabled = "no"
+module_mobile_vr_enabled = "no"
+module_msdfgen_enabled= "no"
+module_multiplayer_enabled = "no"
+module_noise_enabled = "no"
+module_navigation_enabled = "no"
+module_ogg_enabled = "no"
+module_openxr_enabled = "no"
+module_raycast_enabled = "no"
+module_regex_enabled = "no"
+module_squish_enabled = "no"
+module_tga_enabled = "no"
+module_theora_enabled = "no"
+module_tinyexr_enabled = "no"
+module_upnp_enabled = "no"
+module_vhacd_enabled = "no"
+module_vorbis_enabled = "no"
+module_webxr_enabled = "no"
+module_zip_enabled = "no"

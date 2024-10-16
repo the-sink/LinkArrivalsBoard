@@ -17,49 +17,6 @@
 [ext_resource type="FontFile" uid="uid://3xukjm7epjdx" path="res://fonts/Roboto/Roboto-BoldItalic.ttf" id="12_08mcj"]
 [ext_resource type="Script" path="res://scripts/service_alert_ui_item.gd" id="14_ul2oh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ouqqy"]
-font = ExtResource("12_08mcj")
-font_size = 40
-font_color = Color(1, 1, 1, 0.333333)
-
-[sub_resource type="Animation" id="Animation_8my6b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_bgo5s"]
-resource_name = "Spin"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hrla"]
-_data = {
-"RESET": SubResource("Animation_8my6b"),
-"Spin": SubResource("Animation_bgo5s")
-}
-
 [sub_resource type="LabelSettings" id="LabelSettings_73avc"]
 font = ExtResource("2_hp1oq")
 font_size = 30
@@ -111,15 +68,58 @@ _data = {
 font = ExtResource("3_o32wk")
 font_size = 30
 
-[sub_resource type="Gradient" id="Gradient_kf6vg"]
+[sub_resource type="Gradient" id="Gradient_tt3s1"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h7wr2"]
-gradient = SubResource("Gradient_kf6vg")
+gradient = SubResource("Gradient_tt3s1")
 width = 1
 height = 10
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ouqqy"]
+font = ExtResource("12_08mcj")
+font_size = 40
+font_color = Color(1, 1, 1, 0.333333)
+
+[sub_resource type="Animation" id="Animation_8my6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bgo5s"]
+resource_name = "Spin"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hrla"]
+_data = {
+"RESET": SubResource("Animation_8my6b"),
+"Spin": SubResource("Animation_bgo5s")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_ncqkl"]
 line_spacing = 1.0
@@ -224,71 +224,6 @@ data_timer = NodePath("DataRefresh")
 wait_time = 30.0
 
 [node name="OBARequest" type="HTTPRequest" parent="DataUpdateHandler"]
-
-[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("data_container", "arrivals_list_container", "time_delta_timer", "no_arrivals_text", "loading_spinner", "spinner_anim")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 72.0
-offset_right = -10.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
-script = ExtResource("2_pfn2a")
-data_container = NodePath("../DataContainer")
-arrivals_list_container = NodePath("Container")
-time_delta_timer = NodePath("TimeDeltaRefresh")
-no_arrivals_text = NodePath("../NoArrivalsText")
-loading_spinner = NodePath("../LoadingSpinner")
-spinner_anim = NodePath("../LoadingSpinner/AnimationPlayer")
-
-[node name="Container" type="VBoxContainer" parent="ArrivalsList"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 22
-
-[node name="TimeDeltaRefresh" type="Timer" parent="ArrivalsList"]
-wait_time = 5.0
-
-[node name="NoArrivalsText" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "No arrivals in the next 90 minutes"
-label_settings = SubResource("LabelSettings_ouqqy")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LoadingSpinner" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.784314)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-texture = ExtResource("4_on23v")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingSpinner"]
-libraries = {
-"": SubResource("AnimationLibrary_5hrla")
-}
 
 [node name="Header" type="ColorRect" parent="."]
 layout_mode = 1
@@ -411,6 +346,72 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_h7wr2")
 
+[node name="ArrivalsList" type="ScrollContainer" parent="." node_paths=PackedStringArray("data_container", "arrivals_list_container", "time_delta_timer", "no_arrivals_text", "loading_spinner", "spinner_anim")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = -10.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("2_pfn2a")
+data_container = NodePath("../DataContainer")
+arrivals_list_container = NodePath("Container")
+time_delta_timer = NodePath("TimeDeltaRefresh")
+no_arrivals_text = NodePath("../NoArrivalsText")
+loading_spinner = NodePath("../LoadingSpinner")
+spinner_anim = NodePath("../LoadingSpinner/AnimationPlayer")
+
+[node name="Container" type="VBoxContainer" parent="ArrivalsList"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 22
+
+[node name="TimeDeltaRefresh" type="Timer" parent="ArrivalsList"]
+wait_time = 5.0
+
+[node name="NoArrivalsText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "No arrivals in the next 90 minutes"
+label_settings = SubResource("LabelSettings_ouqqy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadingSpinner" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_on23v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingSpinner"]
+libraries = {
+"": SubResource("AnimationLibrary_5hrla")
+}
+
 [node name="ServiceAlert" type="ColorRect" parent="." node_paths=PackedStringArray("data_container", "message_scroll_container", "message_label", "text_fade_anim")]
 visible = false
 modulate = Color(1, 1, 1, 0.921569)
@@ -422,6 +423,7 @@ anchor_bottom = 1.0
 offset_top = -56.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 color = Color(0.262745, 0.254902, 0.258824, 1)
 script = ExtResource("14_ul2oh")
 data_container = NodePath("../DataContainer")
@@ -435,6 +437,7 @@ anchors_preset = -1
 anchor_right = 1.0
 offset_top = -4.0
 grow_horizontal = 2
+mouse_filter = 1
 color = Color(1, 0.701961, 0.133333, 0.87451)
 
 [node name="IconArea" type="ColorRect" parent="ServiceAlert"]
@@ -442,6 +445,7 @@ custom_minimum_size = Vector2(56, 56)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 color = Color(0.180392, 0.164706, 0.168627, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ServiceAlert/IconArea"]
@@ -465,6 +469,7 @@ offset_top = 10.0
 offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.87451)
 
 [node name="LabelArea" type="ScrollContainer" parent="ServiceAlert"]
@@ -484,6 +489,7 @@ modulate = Color(1, 0.901765, 0.762582, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 text = "Message Content"
 label_settings = SubResource("LabelSettings_ncqkl")
 vertical_alignment = 1
@@ -496,6 +502,6 @@ libraries = {
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="timeout" from="DataUpdateHandler/DataRefresh" to="DataUpdateHandler" method="do_data_refresh"]
 [connection signal="request_completed" from="DataUpdateHandler/OBARequest" to="DataUpdateHandler" method="_on_oba_request_request_completed"]
-[connection signal="timeout" from="ArrivalsList/TimeDeltaRefresh" to="ArrivalsList" method="do_time_delta_refresh"]
 [connection signal="pressed" from="Header/SetupButton" to="." method="_on_setup_button_pressed"]
 [connection signal="timeout" from="Header/Time/Timer" to="Header/Time" method="update_clock"]
+[connection signal="timeout" from="ArrivalsList/TimeDeltaRefresh" to="ArrivalsList" method="do_time_delta_refresh"]

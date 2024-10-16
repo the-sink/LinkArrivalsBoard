@@ -31,6 +31,7 @@ window/size/viewport_width=800
 window/size/viewport_height=480
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=6
 
 [file_customization]
 

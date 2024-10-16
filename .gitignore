@@ -5,3 +5,4 @@ android/
 secret.py
 __pycache__/
 **/bin/*/
+**/templates/*/
