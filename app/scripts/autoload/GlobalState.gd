@@ -16,7 +16,7 @@ enum DisplayState {
 
 @onready var config := ConfigFile.new()
 
-var proxy_server_base_url := "http://snibk.com:2052"
+var proxy_server_base_url := "https://snibk.com:2053"
 var selected_route_id := "":
 	set(val):
 		if val == selected_route_id: return

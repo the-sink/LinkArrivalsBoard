@@ -9,12 +9,14 @@ from datetime import datetime
 from io import BytesIO
 from zipfile import ZipFile
 from flask import Flask, Response, request
+from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from apscheduler.schedulers.background import BackgroundScheduler
 from waitress import serve
 
 server = Flask(__name__)
+CORS(server)
 limiter = Limiter(
     key_func=get_remote_address,
     app=server,
@@ -103,18 +105,18 @@ def update_gtfs():
 
 @server.route('/routes')
 def get_routes():
-    if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
+    #if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
     return route_metadata
 
 @server.route('/stops/<route>')
 def get_stops(route):
-    if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
+    #if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
     if not route in routes: return Response("The specified route is not tracked on the server", status=400)
     return routes[route]
 
 @server.route('/arrivals/<route>')
 def get_arrivals(route):
-    if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
+    #if not request.headers.get('User-Agent').startswith('GodotEngine'): return Response(status=400)
     if not route in routes: return Response("The specified route is not tracked on the server", status=400)
     stop = request.data.decode()
     if not stop in routes[route]: return Response("The specified stop name does not exist on the route", status=400)
@@ -130,4 +132,4 @@ def get_arrivals(route):
 
 scheduler.add_job(update_gtfs, trigger='interval', days=1, id='update_gtfs', next_run_time=datetime.now())
 scheduler.start()
-serve(server, host='0.0.0.0', port=2052)
+#serve(server, host='0.0.0.0', port=2053) ONLY UNCOMMENT if you're not using another WSGI server; only http will work
